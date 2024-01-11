@@ -53,6 +53,5 @@ class Program
         {
             Console.WriteLine("I'm sorry you did not pass the course. Try harder next time.");
         }
-
     }
 }
