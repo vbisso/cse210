@@ -22,7 +22,7 @@ public class Journal{
         using (StreamWriter csvFile = new StreamWriter(filename)){ 
             //csvFile.WriteLine("Date,Prompt,Input");
             foreach (Entry entry in _entries){
-                csvFile.WriteLine($"{entry._date},{entry._prompt},{entry._input}");
+                csvFile.WriteLine($"{entry._date},{entry._excersise},{entry._prompt},{entry._input}");
             } 
         }
     }

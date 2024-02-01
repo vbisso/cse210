@@ -43,6 +43,13 @@ class Program
                 case 1:
 
                 DateTime date = DateTime.Now;
+                
+                //To help keep track of excersise consistency
+                Console.WriteLine("Did you excersise today? (y/n)");
+                Console.Write(">");
+                string userExcersise = Console.ReadLine();
+
+
                 Random randomPrompt = new Random();
                 int randomIndex = randomPrompt.Next(prompts.Count);
                 Console.WriteLine(prompts[randomIndex]);
@@ -52,6 +59,7 @@ class Program
                 entry = new Entry();
                 entry._prompt = prompts[randomIndex];
                 entry._date = date.ToShortDateString();
+                entry._excersise = userExcersise;
                 entry._input = userEntry;
 
                 journal._entries.Add(entry);
