@@ -2,11 +2,13 @@ using Develop04;
 
 public class Breathing : Activity
 {
-    private int _breathingTime;
+    private int _breathingIn;
+    private int _breathingOut;
 
-    public Breathing(string activityName, string activityDescription, int activityDuration):base(activityName, activityDescription, activityDuration)
+    public Breathing(string activityName, string activityDescription, int activityDuration, int breathingIn, int breathingOut):base(activityName, activityDescription, activityDuration)
     {
-        _breathingTime = 0;
+       _breathingIn = breathingIn;
+       _breathingOut = breathingOut;
     }
 
 
@@ -19,20 +21,29 @@ public class Breathing : Activity
         while (DateTime.Now < endTime)
         {
             Console.Write($"\nBreathe in...");
-            for (int i=4; i>0; i--){
+            for (int i=_breathingIn; i>0; i--){
                 Console.Write(i);
                 Thread.Sleep(1000);
-                Console.Write("\b \b");
+                if(i>9){
+                    Console.Write("\b\b ");
+                }
+                else{
+                    Console.Write("\b \b");
+                }
+                
             }
             Console.Write($"\nBreathe out...");
-            for (int i=6; i>0; i--){
+            for (int i=_breathingOut; i>0; i--){
                 Console.Write(i);
                 Thread.Sleep(1000);
-                Console.Write("\b \b");
+                if(i>9){
+                    Console.Write("\b\b ");
+                }
+                else{
+                    Console.Write("\b \b");
+                }
             }
-            Console.WriteLine();
             
-
         }
 
         

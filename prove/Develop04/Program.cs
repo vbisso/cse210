@@ -6,29 +6,47 @@ class Program
 {
     static void Main(string[] args)
     {
+        //variables
         int userMenu = 0;
+        int breathingLog = 0;
+        int reflectionLog=0;
+        int listingLog=0;
 
         while (userMenu != 4)
         {
             Console.WriteLine("Welcome to the Mindfulness Program\n");
+            Console.WriteLine("This is your activity log:");
+            Console.WriteLine($"Breathing Activity - {breathingLog} seconds\nReflection Activity - {reflectionLog} seconds\nListing Activity - {listingLog} seconds\n");
             Console.WriteLine("Menu Options:\n1. Start Breathing Activity\n2. Start Reflection Activity\n3. Start Listing Activity\n4. Quit");
-            Console.Write("Select choice from the menu:");
+            Console.Write("\nSelect choice from the menu:");
             userMenu = int.Parse(Console.ReadLine());
             Console.Clear();
 
             switch (userMenu)
             {
                 case 1:
+                    
                     string name1 = "Breathing Activity";
                     string description1 = "This activity will help you relax by guiding you through breathing slowly. Clear your mind and focus on your breathing.";
 
+                    //new instance of activity
                     Activity activity1 = new Activity(name1, description1, 0);
                     Console.WriteLine(activity1.DisplayStartingMessage());
 
                     Console.Write("\nHow long, in seconds, would you like for your session?");
                     int userTime = int.Parse(Console.ReadLine());
+                    //adds session time to log
+                    breathingLog=breathingLog+userTime;
+                    //sets session time in activity
                     activity1.SetAcitivityDuration(userTime);
-                    Breathing breathing = new Breathing(name1, description1, userTime);
+
+                    Console.Write("How long, in seconds, would you like to breath in for?");
+                    int userBreathinIn = int.Parse(Console.ReadLine());
+                    Console.Write("How long, in seconds, would you like to breath out for?");
+                    int userBreathinOut = int.Parse(Console.ReadLine());
+                    
+                    //new instance of breathing with session time, breath in and breath out times
+                    Breathing breathing = new Breathing(name1, description1, userTime,userBreathinIn, userBreathinOut);
 
                     Console.Clear();
                     activity1.DisplayGetReady();
@@ -40,7 +58,7 @@ class Program
 
 
                 case 2:
-
+                    
                     string name2 = "Reflection Activity";
                     string description2 = "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.";
                     List<string> reflectingPrompts = new List<string>(){
@@ -67,6 +85,7 @@ class Program
 
                     Console.Write("\nHow long, in seconds, would you like for your session?");
                     userTime = int.Parse(Console.ReadLine());
+                    reflectionLog=reflectionLog+userTime;
                     activity2.SetAcitivityDuration(userTime);
                     Reflection reflection = new Reflection(name2, description2, userTime, reflectingPrompts, questions);
 
@@ -83,7 +102,7 @@ class Program
                     break;
 
                 case 3:
-
+                    
                     string name3 = "Listing Activity";
                     string description3 = "This activity will help you reflect on the good things in your life by having you list as many things as you can in a certain area.";
                     List<string> listingPrompts = new List<string>(){
@@ -100,6 +119,7 @@ class Program
 
                     Console.Write("\nHow long, in seconds, would you like for your session?");
                     userTime = int.Parse(Console.ReadLine());
+                    listingLog=listingLog+userTime;
                     activity3.SetAcitivityDuration(userTime);
 
                     Listing listing = new Listing(name3, description3, userTime, listingPrompts);
